@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IDish} from '../model';
+import {IDish, IMenu} from '../model';
 import {ProviderService} from '../provider.service';
 import {ActivatedRoute} from '@angular/router';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-dish',
@@ -10,6 +11,8 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DishComponent implements OnInit {
 dishes: IDish[];
+menu: IMenu[];
+
   public  menuId = +this.route.snapshot.paramMap.get('id');
 
  constructor(private providerService: ProviderService,
@@ -18,7 +21,8 @@ dishes: IDish[];
   getDishes(): void {
 
   console.log(this.menuId);
-  this.providerService.getDishes(this.menuId).subscribe(dishes => {this.dishes = dishes; console.log(this.dishes); } );
+  this.providerService.getDishes(this.menuId).subscribe
+  (dishes => {this.dishes = dishes.filter(o => o.menu === this.menuId); console.log(this.dishes); } );
 
   }
 

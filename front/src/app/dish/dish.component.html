@@ -1,6 +1,6 @@
 <div class="products">
   <div class="product-item maxScale"  *ngFor="let dish of dishes">
-    <div *ngIf="dish.menu==menuId">
+<!--    <div *ngIf="dish.menu==menuId">-->
 
     <h3>
       <a href="/dishes/{{dish.id}}"  [title]="dish.name " >
@@ -9,13 +9,10 @@
     </h3>
     <img src={{dish.image_url}} width="270px">
     <div>
-      <h3>{{dish.price}}</h3>
-      <h3>{{dish.description}}</h3>
+      <h3>{{dish.price}} tenge</h3>
 
   </div>
+<!--</div>-->
 </div>
-</div>
-
-<div>
 
 </div>
