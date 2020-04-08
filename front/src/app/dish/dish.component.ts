@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IDish, IMenu} from '../model';
 import {ProviderService} from '../provider.service';
 import {ActivatedRoute} from '@angular/router';
-import {map} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-dish',
@@ -10,13 +10,13 @@ import {map} from "rxjs/operators";
   styleUrls: ['./dish.component.css']
 })
 export class DishComponent implements OnInit {
-dishes: IDish[];
-menu: IMenu[];
+  dishes: IDish[];
+  menu: IMenu[];
 
   public  menuId = +this.route.snapshot.paramMap.get('id');
 
- constructor(private providerService: ProviderService,
-             private route: ActivatedRoute) { }
+  constructor(private providerService: ProviderService,
+              private route: ActivatedRoute) { }
 
   getDishes(): void {
 

@@ -7,11 +7,11 @@
       </h3>
       <img src={{dish.image_url}} width="270px">
       <div>
-        <h3>{{dish.price}}</h3>
-        <h3>{{dish.description}}</h3>
-
+        <h3>Price: {{dish.price}}</h3>
+        <h3>Description: {{dish.description}}</h3>
       </div>
-    <button style="background-color: aquamarine">Order</button>
+      <a class="order">Order</a>
+      <a class="back" (click)="back()">Back</a>
   </div>
 
-  </div>
+</div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IDish, IMenu} from '../model';
 import {ProviderService} from '../provider.service';
 import {ActivatedRoute} from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-dish-item',
   templateUrl: './dish-item.component.html',
@@ -10,12 +11,15 @@ import {ActivatedRoute} from '@angular/router';
 export class DishItemComponent implements OnInit {
 dish: IDish;
   constructor(private providerService: ProviderService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private location: Location) { }
    getDish(): void {
-     //const id = +this.route.snapshot.paramMap.get('id');
      const dishid = +this.route.snapshot.paramMap.get('dishId');
      this.providerService.getDish(dishid).subscribe(dish => {this.dish = dish; console.log(this.dish); } );
 
+   }
+   back(): void {
+     this.location.back();
    }
 
   ngOnInit(): void {
