@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IMenu} from '../model';
 import {ProviderService} from '../provider.service';
 
@@ -8,7 +8,7 @@ import {ProviderService} from '../provider.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-menu: IMenu[] = [];
+  menu: IMenu[] = [];
 
 
   constructor(private providerService: ProviderService) { }

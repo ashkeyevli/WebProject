@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {ProviderService} from '../provider.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +14,7 @@ export class SignupComponent implements OnInit {
   public confirm = '';
   public name = '';
   public email = '';
-  constructor() { }
+  constructor(private provider: ProviderService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +34,14 @@ export class SignupComponent implements OnInit {
       alert('Passwords do not match. Try again, please!');
       this.clear();
     } else {
-      alert('You were successfully logged in. Now log in our system.');
+      this.provider.register(this.login, this.password, this.name, this.email).then(res => {
+        this.clear();
+        this.router.navigate(['/login']);
+        alert('You were successfully signed up. Now, please, log in');
+      }).catch(res => {
+        alert('Something went wrong. Please, try again');
+        this.clear();
+      });
     }
   }
 }
