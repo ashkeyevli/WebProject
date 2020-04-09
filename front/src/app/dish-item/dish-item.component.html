@@ -1,17 +1,21 @@
 <div class="products">
   <div class="product-item maxScale">
-      <h3>
-        <a href="/dishes/{{dish.id}}"  [title]="dish.name ">
-          {{ dish.name }}
-        </a>
-      </h3>
-      <img src={{dish.image_url}} width="270px">
+      <h2 style="color: black">
+        {{dish.name}}
+      </h2>
+      <img src={{dish.imageUrl}} width="270px">
       <div>
         <h3>Price: {{dish.price}}</h3>
         <h3>Description: {{dish.description}}</h3>
+
+        <h3>Count:<span><input class="input" type="text" name="count" [(ngModel)]="dish.count"></span></h3>
+
+
+
       </div>
-      <a class="order">Order</a>
+
+      <button class="order" (click)="postOrder(dish.name,dish.price,dish.imageUrl,dish.count)">Order</button>
       <a class="back" (click)="back()">Back</a>
   </div>
-
+<app-order></app-order>
 </div>

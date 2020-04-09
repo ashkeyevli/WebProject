@@ -3,7 +3,7 @@
   <div class="product-item maxScale"  *ngFor="let menuItem of menu">
 
     <h3>
-      <a href="{{menuItem.id}}/dishes"  [title]="menuItem.name " >
+      <a routerLink="{{menuItem.id}}/dishes"  [title]="menuItem.name " >
         {{ menuItem.name }}
       </a>
     </h3>
