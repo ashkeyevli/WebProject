@@ -9,12 +9,17 @@ import {DishComponent} from './dish/dish.component';
 import {DishItemComponent} from './dish-item/dish-item.component';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
+
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {ProviderService} from './provider.service';
 import {AuthInterceptor} from './AuthInterceptor';
+import { OrderComponent } from './order/order.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,8 @@ import {AuthInterceptor} from './AuthInterceptor';
     FooterComponent,
     HeaderComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

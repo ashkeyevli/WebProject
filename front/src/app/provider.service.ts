@@ -1,16 +1,22 @@
+
 import {Injectable} from '@angular/core';
 import {IAuthResponse, IDish, IMenu} from './model';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProviderService  {
+export class ProviderService {
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  };
+
   constructor(private http: HttpClient) {
   }
+
   private menuUrl = 'api/menu';
 
 
@@ -20,6 +26,7 @@ export class ProviderService  {
     return this.http.get<IMenu[]>(url);
 
   }
+
   // getDishes(restaurantId: string): Promise<IDish[]> {
   //   return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/dishes/`, {});
   // }
@@ -30,8 +37,6 @@ export class ProviderService  {
 // getDishes(menuId: number): Observable<IDish[]> {
 //     return this.get(`menu/${menuId}/dishes`, {});
 // }
-
-
 
 
   // getMenuItem(menuId: number): Observable<IMenu> {
@@ -51,6 +56,7 @@ export class ProviderService  {
     const url = `api/dishes/${dishId}`;
     return this.http.get<IDish>(url);
   }
+
 
   // Auth
   auth(login: any, pass: any): Promise<IAuthResponse> {
@@ -93,9 +99,25 @@ export class ProviderService  {
       }
     }
     return body;
+
+  getOrders(): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>('api/order');
   }
 
+  // postOrder(dishName: any): Observable<IOrder> {
+  //   return this.http.post<IOrder>('api/order', {dish_name: dishName}, this.httpOptions); console.log(dishName);
+  //
+  // }
+  postOrder(dish: IDish): Observable<IOrder> {
+    return this.http.post<IOrder>('api/order', dish, this.httpOptions);
 
+  }
+
+  deleteHero(order: IOrder | number): Observable<IOrder> {
+    const id = typeof order === 'number' ? order : order.id;
+    return this.http.delete<IOrder>(`api/order/${id}`, this.httpOptions);
+
+  }
 }
 
   // {this.menuUrl}/${menuId}/$

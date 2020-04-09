@@ -9,11 +9,11 @@
 <!--    <div *ngIf="dish.menu==menuId">-->
 
     <h3>
-      <a href="/dishes/{{dish.id}}"  [title]="dish.name " >
+      <a routerLink="/dishes/{{dish.id}}"  [title]="dish.name " >
         {{ dish.name }}
       </a>
     </h3>
-    <img src={{dish.image_url}} width="270px">
+    <img src={{dish.imageUrl}} width="270px">
     <div>
       <h3 id="price">{{ dish.price }} tenge</h3>
 
