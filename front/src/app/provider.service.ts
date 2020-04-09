@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
-import {IDish, IMenu, IOrder} from './model';
+
+import {Injectable} from '@angular/core';
+import {IAuthResponse, IDish, IMenu} from './model';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {MainService} from './main.service';
+import * as moment from 'moment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,6 @@ export class ProviderService {
   };
 
   constructor(private http: HttpClient) {
-
   }
 
   private menuUrl = 'api/menu';
@@ -56,6 +57,49 @@ export class ProviderService {
     return this.http.get<IDish>(url);
   }
 
+
+  // Auth
+  auth(login: any, pass: any): Promise<IAuthResponse> {
+    return this.post('http://localhost:8000/api/login/', {
+      username: login,
+      password: pass
+    });
+  }
+
+  logout(): Promise<any> {
+    return this.post('http://localhost:8000/api/logout/', {});
+  }
+
+  register(login: any, pass: any, name: any, nEmail: any): Promise<IAuthResponse> {
+    return this.post('http://localhost:8000/api/signup/', {
+      username: login,
+      password: pass,
+      first_name: name,
+      email: nEmail
+    });
+  }
+  formatDate(date: Date) {
+    return moment(date).format('YYYY-MM-DD');
+  }
+  post(uri: string, body: any): Promise<any> {
+    body = this.normalBody(body);
+    return this.http.post(uri, body).toPromise().then(res => res);
+  }
+
+  private normalBody(body: any): any {
+    if (!body) {
+      body = {};
+    }
+    for (const key in body) {
+      if (!body.hasOwnProperty(key)) {
+        continue;
+      }
+      if (body[key] instanceof Date) {
+        body[key] = this.formatDate(body[key]);
+      }
+    }
+    return body;
+
   getOrders(): Observable<IOrder[]> {
     return this.http.get<IOrder[]>('api/order');
   }
@@ -66,6 +110,7 @@ export class ProviderService {
   // }
   postOrder(dish: IDish): Observable<IOrder> {
     return this.http.post<IOrder>('api/order', dish, this.httpOptions);
+
   }
 
   deleteHero(order: IOrder | number): Observable<IOrder> {
