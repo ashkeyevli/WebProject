@@ -1,6 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {IAuthResponse, IDish, IMenu} from './model';
+import {IAuthResponse, IDish, IMenu, IOrder} from './model';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import * as moment from 'moment';
@@ -99,6 +99,7 @@ export class ProviderService {
       }
     }
     return body;
+  }
 
   getOrders(): Observable<IOrder[]> {
     return this.http.get<IOrder[]>('api/order');

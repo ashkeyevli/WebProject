@@ -7,7 +7,7 @@ import {ProviderService} from '../provider.service';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
+ export class OrderComponent implements OnInit {
   public orders: IOrder[];
   public dishOrder: IDish;
 
