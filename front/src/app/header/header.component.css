@@ -4,10 +4,13 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: #eee;
+  z-index: 4;
 }
 
 .header {
   height: 100vh;
+
+
   background-image:
     linear-gradient(to right bottom,
     rgba(214, 255, 252, 0.8),
