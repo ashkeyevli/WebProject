@@ -17,6 +17,7 @@ import {SignupComponent} from './signup/signup.component';
 import {ProviderService} from './provider.service';
 import {AuthInterceptor} from './AuthInterceptor';
 import { OrderComponent } from './order/order.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 
@@ -31,7 +32,8 @@ import { OrderComponent } from './order/order.component';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    OrderComponent
+    OrderComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
