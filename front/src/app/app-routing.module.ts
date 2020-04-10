@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {OrderComponent} from './order/order.component';
+import {OrderingComponent} from './ordering/ordering.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'order', component: OrderComponent},
+  { path: 'ordering', component: OrderingComponent}
   // {path: '', redirectTo: '/menu', pathMatch: 'full'},
 ];
 
