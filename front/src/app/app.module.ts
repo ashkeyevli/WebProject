@@ -18,6 +18,7 @@ import {ProviderService} from './provider.service';
 import {AuthInterceptor} from './AuthInterceptor';
 import { OrderComponent } from './order/order.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { OrderingComponent } from './ordering/ordering.component';
 
 
 
@@ -33,7 +34,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     LoginComponent,
     SignupComponent,
     OrderComponent,
-    NavBarComponent
+    NavBarComponent,
+    OrderingComponent
   ],
   imports: [
     BrowserModule,
