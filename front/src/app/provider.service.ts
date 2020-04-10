@@ -26,30 +26,11 @@ export class ProviderService {
     return this.http.get<IMenu[]>(url);
 
   }
-
-  // getDishes(restaurantId: string): Promise<IDish[]> {
-  //   return this.get(`http://localhost:8000/api/restaurants/${restaurantId}/dishes/`, {});
-  // }
-  // getDishes(menuId: number): Promise<IDish[]> {
-  //   // const url = `${this.menuUrl}/${menuId}`;
-  //   return this.get(`${this.menuUrl}/${menuId}/dishes`, {});
-  // }
-// getDishes(menuId: number): Observable<IDish[]> {
-//     return this.get(`menu/${menuId}/dishes`, {});
-// }
-
-
-  // getMenuItem(menuId: number): Observable<IMenu> {
-  //   const url = `${this.menuUrl}/${menuId}`;
-  //   return this.http.get<IMenu>(url);
-  // }
   getDishes(menuId: number): Observable<IDish[]> {
     const url = `${menuId}/dishes`;
     console.log(url);
     console.log(this.http.get(url));
     return this.http.get<IDish[]>(url);
-
-
   }
 
   getDish(dishId: number): Observable<IDish> {

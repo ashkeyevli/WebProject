@@ -9,7 +9,7 @@ export class OrderingComponent implements OnInit {
 
   constructor() { }
 save() {
-  window.alert('Your product has been added to the cart!');
+  window.alert('Your ordering finished!');
 }
   ngOnInit(): void {
   }
