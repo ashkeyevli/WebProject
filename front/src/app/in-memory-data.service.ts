@@ -6,6 +6,15 @@ import {IMenu, IDish, IOrder} from './model';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
+    const user = [
+      {id: 1,
+    username: 'ashkeyevli',
+    password: 'kk',
+    first_name: 'Ali',
+    email: 'ashkeyevli@gmail.com',
+    is_admin: true
+      }
+    ];
     const order = [
       // {
       //   id: Number,
@@ -467,38 +476,6 @@ export class InMemoryDataService implements InMemoryDbService {
         description: ''
       },
       {
-        id: 47,
-        menu: 5,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 48,
-        menu: 5,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 49,
-        menu: 5,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 50,
-        menu: 5,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
         id: 51,
         menu: 6,
         name: '',
@@ -543,38 +520,6 @@ export class InMemoryDataService implements InMemoryDbService {
         menu: 6,
         name: '',
         price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 57,
-        menu: 6,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 58,
-        menu: 6,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 59,
-        menu: 6,
-        name: '',
-        price: 90,
-        imageUrl: '',
-        description: ''
-      },
-      {
-        id: 60,
-        menu: 6,
-        name: '',
-        price: 990,
         imageUrl: '',
         description: ''
       },
@@ -812,7 +757,7 @@ export class InMemoryDataService implements InMemoryDbService {
       }
 
     ];
-    return {dishes, menu, order};
+    return {dishes, menu, order, user};
   }
 
   genId(order: IOrder[]): number {

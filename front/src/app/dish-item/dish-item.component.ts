@@ -39,6 +39,7 @@ order: IOrder[];
     // if (!name) {return; }
     this.providerService.postOrder({name, price, imageUrl, count} as IDish)
       .subscribe(dish =>  {this.order.push(dish); console.log(dish); });
+    window.alert('Your product has been added to the cart!');
   }
 
 
