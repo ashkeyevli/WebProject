@@ -1,0 +1,33 @@
+<head>
+  <title>HomeCafe</title>
+  <link rel="stylesheet" a href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+<header class="header-control">
+  <div class="control-align">
+    <div class="img-control">
+      <img src="https://image.freepik.com/free-vector/_23987-18.jpg"/>
+    </div>
+    <nav class="navigation">
+      <ul>
+        <li class="active"><a href="#">Welcome to HomeCafe</a>
+         </li>
+        <li class="active"><a routerLink="/menu">Menu</a><i class="fa fa-angle-down"></i>
+          <div class="sub-menu" ><ul *ngFor="let menuItem of menu"><li><a href="menu/{{menuItem.id}}/dishes">{{menuItem.name}}</a></li>
+          </ul></div> </li>
+        <li ><a routerLink="/order">Cart</a></li>
+      </ul>
+      <div id="ss">
+        <table style="padding-top:10px">
+          <tr style="padding:10px">
+            <td>
+              <a routerLink="/login" id="signin">Log in</a></td>
+
+            <td><a class="btn" routerLink="/signup">Not registered yet?</a> </td>
+            </tr>
+        </table>
+      </div>
+    </nav>
+  </div>
+
+</header>
