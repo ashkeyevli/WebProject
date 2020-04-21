@@ -1,17 +1,16 @@
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import filters
 from api.models import Menu, Dish, Order
 from api.serializers import MenuSerializer, DishSerializer, OrderSerializer
-from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 
 
 @api_view(['GET', 'POST'])
 def menu_view(request):
+    permission_classes = (IsAuthenticated,)
     if request.method == 'GET':
         menu_items = Menu.objects.all()
         serializer = MenuSerializer(menu_items, many=True)
@@ -24,25 +23,8 @@ def menu_view(request):
         return Response(serializer.errors, status=500)
 
 
-class Dishes(generics.ListCreateAPIView):
-    serializer_class = DishSerializer
-    filter_backends = (filters.OrderingFilter,)
-    ordering = ('price',)
-
-    def get_queryset(self):
-        return Dish.objects.filter(menu=self.kwargs['pk'])
-
-    def perform_create(self, serializer):
-        menu = get_object_or_404(Menu, id=self.kwargs['pk'])
-        serializer.save(menu=menu)
-
-
-class DishView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Dish.objects.all()
-    serializer_class = DishSerializer
-
-
 class Orders(generics.ListCreateAPIView):
+
     serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
@@ -53,19 +35,87 @@ class Orders(generics.ListCreateAPIView):
         serializer.save(user=self.request.user)
 
 
-#class OrderView(generics.RetrieveUpdateDestroyAPIView):
-    #queryset = Order.objects.all()
-    #serializer_class = OrderSerializer
-    #permission_classes = (IsAuthenticated,)
-
-
-class Clearer(APIView):
+class OrderView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
-    def delete(self, request):
-        Order.objects.filter(user=request.user).delete()
-        return Response(status=204)
+
+class MenuDishesAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, id):
+        try:
+            return Menu.objects.get(id=id)
+        except Menu.DoesNotExist as e:
+            return Response({'error': str(e)})
+
+    def get(self, request, id):
+        menu = self.get_object(id)
+        dishes = menu.dishes
+        serializer = DishSerializer(dishes, many=True)
+        return Response(serializer.data)
+
+    def put(self, request, id):
+        dish = self.get_object(id)
+        serializer = DishSerializer(instance=dish, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-def description(request):
-    return render(request, 'api.html')
+class DishDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Dish.objects.all()
+    serializer_class = DishSerializer
+    permission_classes = (IsAuthenticated,)
+
+
+@api_view(['GET', 'POST', 'DELETE'])
+def orders_list(request):
+    permission_classes = (IsAuthenticated,)
+    if request.method == 'GET':
+        orders = Order.objects.all()
+        serializer = OrderSerializer(orders, many=True)
+
+        return Response(serializer.data)
+
+    elif request.method == 'POST':
+        serializer = OrderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response({'error': serializer.errors},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    elif request.method == 'DELETE':
+        orders = Order.objects.all()
+        orders.delete()
+
+
+class DishDetailAPIView2(APIView):
+
+    def get_object(self, id):
+        try:
+            return Dish.objects.get(id=id)
+        except Dish.DoesNotExist as e:
+            return Response({'error': str(e)})
+
+    def get(self, request, dish_id):
+        dish = self.get_object(dish_id)
+        serializer = DishSerializer(dish)
+        return Response(serializer.data)
+
+    def put(self, request, dish_id):
+        dish = self.get_object(dish_id)
+        serializer = DishSerializer(instance=dish, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response({'error': serializer.errors})
+
+    def delete(self, request, dish_id):
+        dish = self.get_object(dish_id)
+        dish.delete()
+
+        return Response({'deleted': True})

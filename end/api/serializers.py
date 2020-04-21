@@ -41,7 +41,7 @@ class DishSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     price = serializers.FloatField()
     description = serializers.CharField(style={'base_template': 'textarea.html'})
-    image_url = serializers.CharField(style={'base_template': 'textarea.html'})
+    imageUrl = serializers.CharField(max_length=255)
     count = serializers.IntegerField(default=1)
     menu = MenuSerializer(read_only=True)
 
@@ -54,9 +54,9 @@ class OrderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(required=True)
     count = serializers.IntegerField(required=True)
-    image_url = serializers.CharField()
+    imageUrl = serializers.CharField()
     price = serializers.FloatField()
-    user = UserSerializer(read_only=True)
+    # user = UserSerializer(read_only=True)
 
     class Meta:
         model = Order

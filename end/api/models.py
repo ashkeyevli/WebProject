@@ -13,7 +13,7 @@ class Menu(models.Model):
 class Dish(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()
-    image_url = models.TextField(default=' ')
+    imageUrl = models.TextField(default=' ')
     description = models.TextField(default=' ')
     menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='dishes')
     count = models.IntegerField()
@@ -29,10 +29,10 @@ class OrderManager(models.Manager):
 
 class Order(models.Model):
     name = models.CharField(max_length=200)
-    image_url = models.TextField(default=' ')
+    imageUrl = models.TextField(default=' ')
     price = models.FloatField()
     count = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     objects = OrderManager()
 
