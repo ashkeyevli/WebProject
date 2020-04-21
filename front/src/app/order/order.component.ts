@@ -10,25 +10,29 @@ import {ProviderService} from '../provider.service';
  export class OrderComponent implements OnInit {
   public orders: IOrder[];
   public dishOrder: IDish;
-
+  logged = false;
 
   public empty = true;
   constructor(private providerService: ProviderService) { }
 
   ngOnInit(): void {
-    this.getOrders();
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.logged = true;
+      this.getOrders();
     }
+
+  }
 
   getOrders() {
     this.providerService.getOrders().subscribe(res => {this.orders = res; console.log(this.orders); });
-
   }
+
   deleteOrder(order: IOrder) {
     this.orders = this.orders.filter(h => h !== order);
     this.providerService.deleteOrder(order).subscribe();
-
-
   }
+
   deleteOrders(){
     this.providerService.deleteOrders().subscribe(res => {
       window.location.reload();

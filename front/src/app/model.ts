@@ -19,6 +19,9 @@ export interface IAuthResponse {
   is_admin: boolean;
   name: string;
 }
+export interface LoginResponse {
+  token: string;
+}
 export interface IOrder {
   id: number;
   name: string;

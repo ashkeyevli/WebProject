@@ -10,13 +10,15 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   public login = '';
   public password = '';
+  logged = false;
 
   constructor(private provider: ProviderService, private router: Router) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     if (token) {
-      this.router.navigate(['/']);
+      this.logged = true;
+      window.location.replace('http://localhost:4200/menu');
     }
   }
 
@@ -24,21 +26,24 @@ export class LoginComponent implements OnInit {
     this.login = '';
     this.password = '';
   }
+
   auth() {
     if (!this.login || !this.password) {
       alert('Please, provide full information');
       this.clear();
-    } else {
-      this.provider.auth(this.login, this.password).then(res => {
-        this.clear();
+    } else if (this.login && this.password) {
+      this.provider.login(this.login, this.password).subscribe(res => {
         localStorage.setItem('token', res.token);
-        localStorage.setItem('name', res.name);
-        window.location.reload();
-      }).catch(res => {
-        alert('Wrong login or password. Please, try again or sign up');
+        this.logged = true;
         this.clear();
+        alert('You logged in successfully!');
+        window.location.replace(`http://localhost:4200/menu`);
       });
+    } else {
+      alert('Wrong login or password! Try again!');
     }
   }
+
+
 }
 

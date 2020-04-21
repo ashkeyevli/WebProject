@@ -33,15 +33,6 @@ export class SignupComponent implements OnInit {
     } else if (this.password !== this.confirm) {
       alert('Passwords do not match. Try again, please!');
       this.clear();
-    } else {
-      this.provider.register(this.login, this.password, this.name, this.email).then(res => {
-        this.clear();
-        this.router.navigate(['/login']);
-        alert('You were successfully signed up. Now, please, log in');
-      }).catch(res => {
-        alert('Something went wrong. Please, try again');
-        this.clear();
-      });
     }
   }
 }

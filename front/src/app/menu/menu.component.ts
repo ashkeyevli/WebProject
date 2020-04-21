@@ -9,7 +9,7 @@ import {ProviderService} from '../provider.service';
 })
 export class MenuComponent implements OnInit {
   menu: IMenu[] = [];
-
+  logged = false;
 
   constructor(private providerService: ProviderService) { }
 
@@ -18,7 +18,11 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMenu();
+    const token = localStorage.getItem('token');
+    if (token){
+      this.logged = true;
+      this.getMenu();
+    }
     console.log(this.menu);
   }
 
