@@ -63,8 +63,8 @@ export class ProviderService {
     return this.http.delete<IOrder>(`http://127.0.0.1:8000/api/orders/${id}`, this.httpOptions);
 
   }
-  deleteOrders(): Observable<any> {
-    return this.http.delete<any>('http://127.0.0.1:8000/api/orders/', this.httpOptions);
+  deleteOrders(): Observable<IOrder[]> {
+    return this.http.delete<IOrder[]>('http://127.0.0.1:8000/api/orders/', this.httpOptions);
 
   }
 }

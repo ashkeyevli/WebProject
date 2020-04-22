@@ -23,19 +23,19 @@ def menu_view(request):
         return Response(serializer.errors, status=500)
 
 
-class Orders(generics.ListCreateAPIView):
+# class Orders(generics.ListCreateAPIView):
+#
+#     serializer_class = OrderSerializer
+#     permission_classes = (IsAuthenticated,)
+#
+#     def get_queryset(self):
+#         return Order.objects.for_user(self.request.user)
+#
+#     def perform_create(self, serializer):
+#         serializer.save(user=self.request.user)
 
-    serializer_class = OrderSerializer
-    permission_classes = (IsAuthenticated,)
 
-    def get_queryset(self):
-        return Order.objects.for_user(self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
-
-
-class OrderView(generics.RetrieveUpdateDestroyAPIView):
+class OrderAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
