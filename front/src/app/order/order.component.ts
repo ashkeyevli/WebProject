@@ -30,13 +30,12 @@ import {ProviderService} from '../provider.service';
 
   deleteOrder(order: IOrder) {
     this.orders = this.orders.filter(h => h !== order);
-    this.providerService.deleteOrder(order).subscribe();
+    this.providerService.deleteOrder(order).subscribe(res => { });
   }
 
-  deleteOrders(){
-    this.providerService.deleteOrders().subscribe(res => {
-      window.location.reload();
-    });
+  deleteOrders() {
+    this.providerService.deleteOrders().subscribe();
+    window.location.reload();
   }
 
 
