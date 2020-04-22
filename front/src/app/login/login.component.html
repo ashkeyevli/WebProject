@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="!logged">
   <p class="sign" align="center">Log in</p>
   <input class="un " type="text" align="center" placeholder="Username" [(ngModel)]="login" required>
   <input class="pass" type="password" align="center" placeholder="Password" [(ngModel)]="password" required>

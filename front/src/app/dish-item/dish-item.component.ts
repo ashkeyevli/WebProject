@@ -9,23 +9,31 @@ import { Location } from '@angular/common';
   styleUrls: ['./dish-item.component.css']
 })
 export class DishItemComponent implements OnInit {
-dish: IDish;
-order: IOrder[];
-
-
-
+  dish: IDish;
+  order: IOrder[];
+  logged = false;
 
   constructor(private providerService: ProviderService,
               private route: ActivatedRoute,
-              private location: Location) { }
-   getDish(): void {
-     const dishid = +this.route.snapshot.paramMap.get('dishId');
-     this.providerService.getDish(dishid).subscribe(dish => {this.dish = dish; console.log(this.dish); } );
+              private location: Location)
+  { }
 
-   }
-   back(): void {
-     this.location.back();
-   }
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.logged = true;
+    }
+    this.getDish();
+  }
+
+  getDish(): void {
+    const dishid = +this.route.snapshot.paramMap.get('dishId');
+    this.providerService.getDish(dishid).subscribe(dish => {this.dish = dish; console.log(this.dish); } );
+
+  }
+  back(): void {
+    this.location.back();
+  }
    // postOrder(dish: IDish) {
    //
    //  this.providerService.postOrder(dish).subscribe(dishItem => {this.order});
@@ -43,9 +51,6 @@ order: IOrder[];
   }
 
 
-  ngOnInit(): void {
-    this.getDish();
 
-  }
 
 }

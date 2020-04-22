@@ -12,6 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 export class DishComponent implements OnInit {
   dishes: IDish[];
   menu: IMenu[];
+  logged = false;
 
   public  menuId = +this.route.snapshot.paramMap.get('id');
 
@@ -22,13 +23,17 @@ export class DishComponent implements OnInit {
 
   console.log(this.menuId);
   this.providerService.getDishes(this.menuId).subscribe
-  (dishes => {this.dishes = dishes.filter(o => o.menu === this.menuId); console.log(this.dishes); } );
+  (dishes => {this.dishes = dishes; console.log(this.dishes); } );
 
   }
 
 
   ngOnInit(): void {
-    this.getDishes();
+    const token = localStorage.getItem('token');
+    if (token){
+      this.logged = true;
+      this.getDishes();
+    }
 
   }
 

@@ -70,7 +70,7 @@ z-index: 1;
   display:block;
   margin: 10px;
 }
-#ss{
+.ss{
   float: right;
   margin-top:10px;
 
@@ -79,7 +79,7 @@ z-index: 1;
   height: 20px;
 
 }
-#signin {
+.signin {
   margin-left: 20px;
   color:white;
   text-decoration: none;
