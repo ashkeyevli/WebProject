@@ -2,15 +2,20 @@ from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework.permissions import IsAuthenticated
+# from rest_framework.permissions import IsAuthenticated
 from api.models import Menu, Dish, Order
-from api.serializers import MenuSerializer, DishSerializer, OrderSerializer
+from api.serializers import MenuSerializer, DishSerializer, OrderSerializer, RegisterSerializer
 from django.shortcuts import render
+from django.contrib.auth.models import User
 
+#
+# class MenuAPIView(generics.ListCreateAPIView):
+#     queryset = Menu.objects.all()
+#     serializer_class = MenuSerializer
 
 @api_view(['GET', 'POST'])
 def menu_view(request):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     if request.method == 'GET':
         menu_items = Menu.objects.all()
         serializer = MenuSerializer(menu_items, many=True)
@@ -38,11 +43,11 @@ def menu_view(request):
 class OrderAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
 
 class MenuDishesAPIView(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
     def get_object(self, id):
         try:
@@ -69,12 +74,12 @@ class MenuDishesAPIView(APIView):
 class DishDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
 
 
 @api_view(['GET', 'POST', 'DELETE'])
 def orders_list(request):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     if request.method == 'GET':
         orders = Order.objects.all()
         serializer = OrderSerializer(orders, many=True)
@@ -119,3 +124,7 @@ class DishDetailAPIView2(APIView):
         dish.delete()
 
         return Response({'deleted': True})
+
+class Register(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
