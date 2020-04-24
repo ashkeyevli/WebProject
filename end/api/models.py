@@ -32,7 +32,7 @@ class Order(models.Model):
     imageUrl = models.TextField(default=' ')
     price = models.FloatField()
     count = models.IntegerField()
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
 
     objects = OrderManager()
 

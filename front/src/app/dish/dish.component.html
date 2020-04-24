@@ -1,9 +1,9 @@
-<div class="menu-categories" *ngIf="logged">
+<div class="menu-categories">
   <a routerLink="/menu"><h1 style="text-align:center; margin: 40px 0px; color: mediumpurple;">Menu</h1></a>
 
 </div>
-<div class="products" *ngIf="logged">
-
+<div class="products">
+<!--  *ngIf="logged"-->
 
   <div class="product-item maxScale"  *ngFor="let dish of dishes">
 <!--    <div *ngIf="dish.menu==menuId">-->

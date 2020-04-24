@@ -15,13 +15,13 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.providerService.getMenu().subscribe(menu => {this.menu = menu; } );
-    let token = localStorage.getItem('token');
-    if (token){
+    const token = localStorage.getItem('token');
+    if (token) {
       this.logged = true;
     }
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.logged = false;
     window.location.reload();

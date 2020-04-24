@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-# from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from api.models import Menu, Dish, Order
 from api.serializers import MenuSerializer, DishSerializer, OrderSerializer, RegisterSerializer
 from django.shortcuts import render
@@ -33,17 +33,14 @@ def menu_view(request):
 #     serializer_class = OrderSerializer
 #     permission_classes = (IsAuthenticated,)
 #
-#     def get_queryset(self):
-#         return Order.objects.for_user(self.request.user)
-#
-#     def perform_create(self, serializer):
-#         serializer.save(user=self.request.user)
 
 
-class OrderAPIView(generics.RetrieveUpdateDestroyAPIView):
+
+class OrderAPIView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
+
 
 
 class MenuDishesAPIView(APIView):
