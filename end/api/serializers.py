@@ -56,7 +56,7 @@ class OrderSerializer(serializers.ModelSerializer):
     count = serializers.IntegerField(required=True)
     imageUrl = serializers.CharField()
     price = serializers.FloatField()
-    # user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Order

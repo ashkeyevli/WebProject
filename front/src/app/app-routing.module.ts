@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'menu/:id/dishes', component: DishComponent},
   { path: 'dishes/:dishId', component: DishItemComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'register', component: SignupComponent },
   { path: 'order', component: OrderComponent},
   { path: 'ordering', component: OrderingComponent}
   // {path: '', redirectTo: '/menu', pathMatch: 'full'},
