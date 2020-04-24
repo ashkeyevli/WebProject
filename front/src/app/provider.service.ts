@@ -1,6 +1,6 @@
 
 import {Injectable} from '@angular/core';
-import {IAuthResponse, IDish, IMenu, IOrder, LoginResponse} from './model';
+import {IAuthResponse, IDish, IMenu, IOrder, IUser, LoginResponse} from './model';
 import {Observable, of} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -56,6 +56,13 @@ export class ProviderService {
   // }
   postOrder(dish: IDish): Observable<IOrder> {
     return this.http.post<IOrder>('http://127.0.0.1:8000/api/orders/', dish, this.httpOptions);
+  }
+
+  postUser(login: any, pass: any, name: any, nEmail: any): Observable<IUser> {
+return this.http.post<IUser>('http://127.0.0.1:8000/api/register/', {username: login,
+  password: pass,
+  first_name: name,
+  email: nEmail}, this.httpOptions);
   }
 
   deleteOrder(order: IOrder | number): Observable<IOrder> {
