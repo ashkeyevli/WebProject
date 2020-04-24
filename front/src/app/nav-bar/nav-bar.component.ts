@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IMenu} from '../model';
 import {ProviderService} from '../provider.service';
 
@@ -10,6 +10,7 @@ import {ProviderService} from '../provider.service';
 export class NavBarComponent implements OnInit {
   menu: IMenu[] = [];
   logged = false;
+  name = '';
   constructor(private providerService: ProviderService) { }
 
   ngOnInit(): void {
