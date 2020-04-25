@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {IDish, IMenu, IOrder} from '../model';
+import {Component, OnInit} from '@angular/core';
+import {IDish, IOrder} from '../model';
 import {ProviderService} from '../provider.service';
 import {ActivatedRoute} from '@angular/router';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
+
 @Component({
   selector: 'app-dish-item',
   templateUrl: './dish-item.component.html',
@@ -39,14 +40,15 @@ export class DishItemComponent implements OnInit {
    //  this.providerService.postOrder(dish).subscribe(dishItem => {this.order});
    //  }
 
-  postOrder(name: string, price: number, imageUrl: string, count: number): void {
+  postOrder(name: string, count: number, imageUrl: string, price: number): void {
     count = this.dish.count;
-
     // name = name.trim();
     // price = price;
     // if (!name) {return; }
-    this.providerService.postOrder({name, price, imageUrl, count} as IDish)
-      .subscribe(dish =>  {this.order.push(dish); console.log(dish); });
+    this.providerService.postOrder({name, count, imageUrl, price} as IDish)
+      .subscribe(dish =>  {
+        this.order.push(dish);
+        console.log(dish); });
     window.alert('Your product has been added to the cart!');
   }
 

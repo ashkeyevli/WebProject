@@ -18,6 +18,7 @@ export class NavBarComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token) {
       this.logged = true;
+      this.name = localStorage.getItem('name');
     }
   }
 

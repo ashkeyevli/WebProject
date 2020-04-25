@@ -17,13 +17,10 @@
           </ul></div> </li>
         <li ><a routerLink="/order">Cart</a></li>
       </ul>
-      <div class="ss" >
-<!--        *ngIf="logged"-->
+      <div class="ss" *ngIf="!logged">
         <table style="padding-top:10px">
           <tr style="padding:10px">
-            <td>
-              <a routerLink="login/" class="signin">Log in</a></td>
-
+            <td><a routerLink="login/" class="signin">Log in</a></td>
             <td><a class="btn" routerLink="register/">Not registered yet?</a> </td>
             </tr>
         </table>
@@ -31,6 +28,7 @@
       <div class="ss" *ngIf="logged">
         <table style="padding-top:10px">
           <tr style="padding:10px">
+            <td><a class="signin">Hello, {{ name }} ! </a></td>
             <td><a (click)="logout()"  class="signin">Log out</a></td>
             </tr>
         </table>

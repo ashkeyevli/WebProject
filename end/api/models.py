@@ -2,9 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class MenuManager(models.Manager):
+    def order_by_name(self, name):
+        return self.order_by('name')
+
+
 class Menu(models.Model):
     name = models.CharField(max_length=200)
     image_url_menu = models.CharField(max_length=255)
+    objects = MenuManager()
 
     def __str__(self):
         return '{}'.format(self.name)
@@ -32,7 +38,7 @@ class Order(models.Model):
     imageUrl = models.TextField(default=' ')
     price = models.FloatField()
     count = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
 
     objects = OrderManager()
 

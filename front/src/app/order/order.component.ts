@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IDish, IOrder} from '../model';
 import {ProviderService} from '../provider.service';
 
@@ -21,11 +21,13 @@ import {ProviderService} from '../provider.service';
       this.logged = true;
       this.getOrders();
     }
-
   }
 
   getOrders() {
-    this.providerService.getOrders().subscribe(res => {this.orders = res; console.log(this.orders); });
+    this.providerService.getOrders().subscribe(res => {
+      this.orders = res;
+      console.log(this.orders);
+    });
   }
 
   deleteOrder(order: IOrder) {

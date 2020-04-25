@@ -8,16 +8,11 @@ from api.serializers import MenuSerializer, DishSerializer, OrderSerializer, Reg
 from django.shortcuts import render
 from django.contrib.auth.models import User
 
-#
-# class MenuAPIView(generics.ListCreateAPIView):
-#     queryset = Menu.objects.all()
-#     serializer_class = MenuSerializer
 
 @api_view(['GET', 'POST'])
 def menu_view(request):
-    # permission_classes = (IsAuthenticated,)
     if request.method == 'GET':
-        menu_items = Menu.objects.all()
+        menu_items = Menu.objects.order_by_name(request)
         serializer = MenuSerializer(menu_items, many=True)
         return Response(serializer.data, status=200)
     elif request.method == 'POST':
@@ -28,24 +23,13 @@ def menu_view(request):
         return Response(serializer.errors, status=500)
 
 
-# class Orders(generics.ListCreateAPIView):
-#
-#     serializer_class = OrderSerializer
-#     permission_classes = (IsAuthenticated,)
-#
-
-
-
 class OrderAPIView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
 
 
-
 class MenuDishesAPIView(APIView):
-    # permission_classes = (IsAuthenticated,)
-
     def get_object(self, id):
         try:
             return Menu.objects.get(id=id)
@@ -71,12 +55,11 @@ class MenuDishesAPIView(APIView):
 class DishDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Dish.objects.all()
     serializer_class = DishSerializer
-    # permission_classes = (IsAuthenticated,)
 
 
 @api_view(['GET', 'POST', 'DELETE'])
 def orders_list(request):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     if request.method == 'GET':
         orders = Order.objects.all()
         serializer = OrderSerializer(orders, many=True)
@@ -121,6 +104,7 @@ class DishDetailAPIView2(APIView):
         dish.delete()
 
         return Response({'deleted': True})
+
 
 class Register(generics.CreateAPIView):
     queryset = User.objects.all()
