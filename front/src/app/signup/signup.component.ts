@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProviderService} from '../provider.service';
-import {IUser} from '../model';
+import {LoginResponse} from '../model';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +10,7 @@ import {IUser} from '../model';
 })
 export class SignupComponent implements OnInit {
 
-  user: IUser[] = [];
+  user: LoginResponse[] = [];
   public login = '';
   public password = '';
   public confirm = '';
@@ -19,8 +19,8 @@ export class SignupComponent implements OnInit {
   constructor(private provider: ProviderService, private router: Router) { }
 
   ngOnInit(): void {
-    let users = localStorage.getItem('users');
-    console.log(users);
+    // let users = localStorage.getItem('users');
+    // console.log(users);
   }
 
   clear() {
@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
         this.user.push(res);
         console.log(this.login, this.password, this.name, this.email);
         localStorage.setItem('name', res.username);
-        localStorage.setItem('users', JSON.stringify(this.user));
+        // localStorage.setItem('users', JSON.stringify(this.user));
         this.clear();
         this.router.navigate(['/login']);
         alert('You were successfully signed up. Now, please, log in');

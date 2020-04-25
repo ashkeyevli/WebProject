@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IDish, IOrder} from '../model';
+import {IOrder} from '../model';
 import {ProviderService} from '../provider.service';
 
 @Component({
@@ -9,7 +9,6 @@ import {ProviderService} from '../provider.service';
 })
  export class OrderComponent implements OnInit {
   public orders: IOrder[];
-  public dishOrder: IDish;
   logged = false;
 
   public empty = true;

@@ -78,32 +78,32 @@ def orders_list(request):
         orders.delete()
 
 
-class DishDetailAPIView2(APIView):
-
-    def get_object(self, id):
-        try:
-            return Dish.objects.get(id=id)
-        except Dish.DoesNotExist as e:
-            return Response({'error': str(e)})
-
-    def get(self, request, dish_id):
-        dish = self.get_object(dish_id)
-        serializer = DishSerializer(dish)
-        return Response(serializer.data)
-
-    def put(self, request, dish_id):
-        dish = self.get_object(dish_id)
-        serializer = DishSerializer(instance=dish, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response({'error': serializer.errors})
-
-    def delete(self, request, dish_id):
-        dish = self.get_object(dish_id)
-        dish.delete()
-
-        return Response({'deleted': True})
+# class DishDetailAPIView2(APIView):
+#
+#     def get_object(self, id):
+#         try:
+#             return Dish.objects.get(id=id)
+#         except Dish.DoesNotExist as e:
+#             return Response({'error': str(e)})
+#
+#     def get(self, request, dish_id):
+#         dish = self.get_object(dish_id)
+#         serializer = DishSerializer(dish)
+#         return Response(serializer.data)
+#
+#     def put(self, request, dish_id):
+#         dish = self.get_object(dish_id)
+#         serializer = DishSerializer(instance=dish, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response({'error': serializer.errors})
+#
+#     def delete(self, request, dish_id):
+#         dish = self.get_object(dish_id)
+#         dish.delete()
+#
+#         return Response({'deleted': True})
 
 
 class Register(generics.CreateAPIView):

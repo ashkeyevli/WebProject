@@ -70,12 +70,8 @@ class DishSerializer(serializers.Serializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(required=True)
-    count = serializers.IntegerField(required=True)
-    imageUrl = serializers.CharField()
-    price = serializers.FloatField()
-    # user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
+    user_id=serializers.IntegerField(write_only=True, default=1)
 
     class Meta:
         model = Order

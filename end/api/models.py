@@ -38,20 +38,32 @@ class Order(models.Model):
     imageUrl = models.TextField(default=' ')
     price = models.FloatField()
     count = models.IntegerField()
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order')
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     objects = OrderManager()
 
-    def __str__(self):
-        return '{}'.format(self.name)
-
-
-class AuthResponse(models.Model):
-    token = models.CharField(max_length=250)
-    is_admin = models.BooleanField()
-    name = models.CharField(max_length=100)
+    class Meta:
+        verbose_name = 'Order'
+        verbose_name_plural = 'Orders'
 
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}: {}'.format(self.name, self.count,self.imageUrl, self.price)
+
+    def to_json(self):
+        return {
+            'id: ': self.id,
+            'name: ': self.name,
+            'ImageUrl': self.ImageUrl,
+            'price': self.price,
+            'count': self.count
+        }
+
+
+# class AuthResponse(models.Model):
+#     token = models.CharField(max_length=250)
+#     is_admin = models.BooleanField()
+#     name = models.CharField(max_length=100)
+#
+#     def __str__(self):
+#         return '{}'.format(self.name)
 
 

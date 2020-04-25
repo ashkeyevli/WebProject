@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {IDish, IMenu, IOrder, IUser, LoginResponse} from './model';
+import {IDish, IMenu, IOrder,  LoginResponse} from './model';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
@@ -16,6 +16,23 @@ export class ProviderService {
   }
 
   private menuUrl = 'http://127.0.0.1:8000/api/menu/';
+
+  postUser(login: any, pass: any, name: any, nEmail: any): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>('http://127.0.0.1:8000/api/register/', {
+      username: login,
+      password: pass,
+      first_name: name,
+      email: nEmail
+    }, this.httpOptions);
+  }
+
+
+  login(username, password): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`http://127.0.0.1:8000/api/login/`, {
+      username,
+      password
+    });
+  }
 
 
   getMenu(): Observable<IMenu[]> {
@@ -37,34 +54,15 @@ export class ProviderService {
   }
 
 
-  login(username, password): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`http://127.0.0.1:8000/api/login/`, {
-      username,
-      password
-    });
-  }
-
 
   getOrders(): Observable<IOrder[]> {
     return this.http.get<IOrder[]>('http://127.0.0.1:8000/api/orders/');
   }
 
-  // postOrder(dishName: any): Observable<IOrder> {
-  //   return this.http.post<IOrder>('api/order', {dish_name: dishName}, this.httpOptions); console.log(dishName);
-  //
-  // }
   postOrder(dish: IDish): Observable<IOrder> {
     return this.http.post<IOrder>('http://127.0.0.1:8000/api/orders/', dish, this.httpOptions);
   }
 
-  postUser(login: any, pass: any, name: any, nEmail: any): Observable<IUser> {
-    return this.http.post<IUser>('http://127.0.0.1:8000/api/register/', {
-      username: login,
-      password: pass,
-      first_name: name,
-      email: nEmail
-    }, this.httpOptions);
-  }
 
   deleteOrder(order: IOrder | number): Observable<IOrder> {
     const id = typeof order === 'number' ? order : order.id;
