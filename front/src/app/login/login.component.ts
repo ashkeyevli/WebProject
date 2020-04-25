@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     } else if (this.login && this.password) {
       this.provider.login(this.login, this.password).subscribe(res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('name', this.login);
         this.logged = true;
         this.clear();
         alert('You logged in successfully!');

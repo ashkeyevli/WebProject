@@ -3,10 +3,7 @@
 
 </div>
 <div class="products">
-<!--  *ngIf="logged"-->
-
   <div class="product-item maxScale"  *ngFor="let dish of dishes">
-<!--    <div *ngIf="dish.menu==menuId">-->
 
     <h3>
       <a routerLink="/dishes/{{dish.id}}"  [title]="dish.name " >
@@ -18,7 +15,6 @@
       <h3 id="price">{{ dish.price }} tenge</h3>
 
     </div>
-<!--</div>-->
   </div>
 
 </div>

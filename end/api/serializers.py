@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Menu, Dish, Order
+from api.models import Dish, Order, Menu
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import BCryptSHA256PasswordHasher
 
@@ -26,17 +26,40 @@ class RegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-class MenuSerializer(serializers.ModelSerializer):
+class MenuSerializer(serializers.Serializer):
+
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField()
     image_url_menu = serializers.CharField(max_length=255)
 
-    class Meta:
-        model = Menu
-        fields = '__all__'
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.image_url_menu = validated_data.get('image_url_menu', instance.image_url_menu)
+        instance.save()
+        return instance
+
+    def create(self, validated_data):
+        menu = Menu.objects.create(name=validated_data('name'), image_url_menu=validated_data('image_url_menu'))
+        return menu
 
 
-class DishSerializer(serializers.ModelSerializer):
+class DishSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.price = validated_data.get('price', instance.price)
+        instance.description = validated_data.get('description', instance.description)
+        instance.imageUrl = validated_data.get('imageUrl', instance.imageUrl)
+        instance.count = validated_data.get('count', instance.count)
+        instance.menu = validated_data.get('menu', instance.menu)
+        instance.save()
+        return instance
+
+    def create(self, validated_data):
+        dish = Dish.objects.create(name=validated_data('name'), price=validated_data('price'),
+                                   description=validated_data('price'), imageUrl=validated_data('imageUrl'),
+                                   count=validated_data('count'), menu=validated_data('menu'))
+        return dish
+
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField()
     price = serializers.FloatField()
@@ -45,10 +68,6 @@ class DishSerializer(serializers.ModelSerializer):
     count = serializers.IntegerField(default=1)
     menu = MenuSerializer(read_only=True)
 
-    class Meta:
-        model = Dish
-        fields = '__all__'
-
 
 class OrderSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
@@ -56,7 +75,7 @@ class OrderSerializer(serializers.ModelSerializer):
     count = serializers.IntegerField(required=True)
     imageUrl = serializers.CharField()
     price = serializers.FloatField()
-    user = UserSerializer(read_only=True)
+    # user = UserSerializer(read_only=True)
 
     class Meta:
         model = Order

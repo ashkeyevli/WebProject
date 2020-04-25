@@ -1,9 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {MenuComponent} from './menu/menu.component';
 import {DishComponent} from './dish/dish.component';
 import {DishItemComponent} from './dish-item/dish-item.component';
-import { CommonModule } from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {OrderComponent} from './order/order.component';
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'order', component: OrderComponent},
   { path: 'ordering', component: OrderingComponent}
-  // {path: '', redirectTo: '/menu', pathMatch: 'full'},
 ];
 
 @NgModule({

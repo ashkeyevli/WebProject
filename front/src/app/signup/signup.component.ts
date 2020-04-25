@@ -33,13 +33,15 @@ export class SignupComponent implements OnInit {
       alert('Please, write your login and password!');
       this.clear();
     } else if (this.password !== this.confirm) {
-      alert('Passwords do not match. Try again, please!'); }
+      alert('Passwords do not match. Try again, please!');
+    }
     this.provider.postUser(this.login, this.password, this.name, this.email).subscribe(res => {
-        this.user.push(res); console.log(this.login, this.password, this.name, this.email);
-
-    //     this.clear();
-    //     this.router.navigate(['/login']);
-    //     alert('You were successfully signed up. Now, please, log in');
+        this.user.push(res);
+        console.log(this.login, this.password, this.name, this.email);
+        localStorage.setItem('name', res.username);
+        this.clear();
+        this.router.navigate(['/login']);
+        alert('You were successfully signed up. Now, please, log in');
       });
-      }
+  }
 }
