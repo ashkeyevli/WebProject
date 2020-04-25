@@ -19,23 +19,16 @@ export class DishComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   getDishes(): void {
-
-    console.log(this.menuId);
     this.providerService.getDishes(this.menuId).subscribe
       (dishes => {
         this.dishes = dishes;
-        console.log(this.dishes);
       } );
 
   }
 
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
-    if (token){
-      this.getDishes();
-    }
-
+    this.getDishes();
   }
 
 }

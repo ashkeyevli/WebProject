@@ -14,23 +14,9 @@ export interface IMenu {
   image_url_menu: string;
 }
 
-export interface IAuthResponse {
-  token: string;
-  is_admin: boolean;
-  name: string;
-}
-export interface LoginResponse {
-  token: string;
-}
-export interface IOrder {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  count: number;
 
-}
-export interface IUser {
+export interface LoginResponse {
+  token: string
   id: number;
   username: string;
   password: string;
@@ -38,3 +24,13 @@ export interface IUser {
   email: string;
   is_admin: boolean;
 }
+export interface IOrder {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+  count: number;
+  user_id: LoginResponse;
+
+}
+

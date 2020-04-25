@@ -11,9 +11,9 @@ import {Location} from '@angular/common';
 })
 export class DishItemComponent implements OnInit {
   dish: IDish;
-  order: IOrder[];
+  order: IOrder[] = [];
   logged = false;
-
+  // public users = localStorage.getItem('users');
   constructor(private providerService: ProviderService,
               private route: ActivatedRoute,
               private location: Location)
@@ -25,6 +25,7 @@ export class DishItemComponent implements OnInit {
       this.logged = true;
     }
     this.getDish();
+
   }
 
   getDish(): void {
@@ -35,24 +36,12 @@ export class DishItemComponent implements OnInit {
   back(): void {
     this.location.back();
   }
-   // postOrder(dish: IDish) {
-   //
-   //  this.providerService.postOrder(dish).subscribe(dishItem => {this.order});
-   //  }
 
   postOrder(name: string, count: number, imageUrl: string, price: number): void {
     count = this.dish.count;
-    // name = name.trim();
-    // price = price;
-    // if (!name) {return; }
-    this.providerService.postOrder({name, count, imageUrl, price} as IDish)
+     this.providerService.postOrder({name, count, imageUrl, price} as IDish)
       .subscribe(dish =>  {
-        this.order.push(dish);
-        console.log(dish); });
+        this.order.push(dish);});
     window.alert('Your product has been added to the cart!');
   }
-
-
-
-
 }
