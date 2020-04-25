@@ -23,10 +23,11 @@ def menu_view(request):
         return Response(serializer.errors, status=500)
 
 
-class OrderAPIView(generics.ListCreateAPIView):
+class OrderAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = (IsAuthenticated,)
+
 
 
 class MenuDishesAPIView(APIView):

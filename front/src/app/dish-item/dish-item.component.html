@@ -12,8 +12,16 @@
         <h3>Count:<span><input class="input" type="text" name="count" [(ngModel)]="dish.count"></span></h3>
       </div>
 
-      <button class="order" (click)="postOrder(dish.name,dish.count,dish.imageUrl,dish.price)">Order</button>
+      <div *ngIf="logged">
+        <button class="order" (click)="postOrder(dish.name,dish.count,dish.imageUrl,dish.price)">Order</button>
+        <a class="back" (click)="back()">Back</a>
+      </div>
+    <div *ngIf="!logged">
+      <button class="order" routerLink="/login">Login</button>
       <a class="back" (click)="back()">Back</a>
+    </div>
+
+
   </div>
 
 </div>
