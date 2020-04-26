@@ -3,21 +3,25 @@ footer {
   height: 220px;
   position: relative;
   clear: both;
-  background-color: white;
+  background-color: black;
   margin-top: 3cm;
 }
 
-.footer_info {
-  width: 180px;
-  height: 210px;
+.footer_sections {
+  width: 200px;
+  height: 200px;
   float: left;
   margin-top: 15px;
   margin-right: 55px;
-  background-color: white;
+  background-color: black;
 }
 
 .about_us {
   margin-left: 150px;
+}
+.tagline {
+  width: 400px;
+  margin-left: 30px;
 }
 
 .partners {
@@ -30,13 +34,13 @@ footer {
 
 .contact p {
   margin-left: 10px;
-  color: #9C27B0;
+  color: white;
 
 }
-#number {
-  color: #9e6faa;
+#telephone {
+  color: white;
 }
-.contact #number:before{
+.contact #telephone:before{
   content: "☏";
   font-size: 20px;
 }
@@ -47,18 +51,18 @@ h5 {
   margin-left: 10px;
   font-size: 17px;
   font-family: Arial, Helvetica, sans-serif;
-  color: #9C27B0;
+  color: #EC9D1C;
 }
 
 footer a {
   margin: 5px 0px 0px 10px;
   font-size: 15px;
-  color: #9e6faa;
+  color: white;
   display: block;
 }
 
 footer a:hover {
-  color: red;
+  color: #9e6faa;
 }
 
 .social_media ol  {

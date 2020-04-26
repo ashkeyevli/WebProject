@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a543f550-4e17-47dc-9ee3-e8bb96686ae3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/dish-item/dish-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/dish-item/dish-item.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../front/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../front/src/app/login/login.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +94,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Новая папка/webdevelopment/week13/hh_back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../AsBolsyn-master/back" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="ts.external.directory.path" value="C:\Users\User\AppData\Local\JetBrains\PyCharm 2019.1.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
@@ -152,6 +150,7 @@
       <workItem from="1587312606444" duration="2424000" />
       <workItem from="1587450061316" duration="13750000" />
       <workItem from="1587746831313" duration="12214000" />
+      <workItem from="1587899028600" duration="1866000" />
     </task>
     <task id="LOCAL-00001" summary="registration+login works fully">
       <created>1587723722674</created>
@@ -195,18 +194,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="488" y="81" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1587750120774" />
-    <state x="277" y="0" key="CommitChangelistDialog2" timestamp="1587829225625">
+    <state x="277" y="0" key="CommitChangelistDialog2" timestamp="1587904486808">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="277" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1587829225625" />
+    <state x="277" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1587904486808" />
     <state x="122" y="55" key="DiffContextDialog" timestamp="1587724014663">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="122" y="55" key="DiffContextDialog/0.0.1280.720@0.0.1280.720" timestamp="1587724014662" />
-    <state x="434" y="119" key="FileChooserDialogImpl" timestamp="1587740567854">
+    <state x="434" y="119" key="FileChooserDialogImpl" timestamp="1587904038870">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="434" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1587740567854" />
+    <state x="434" y="119" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1587904038870" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1587451841657" />
     <state x="437" y="240" key="Github.CreatePullRequestDialog" timestamp="1587829247630">
       <screen x="0" y="0" width="1280" height="720" />
@@ -222,10 +221,14 @@
     </state>
     <state x="101" y="0" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1587817712498" />
     <state x="108" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1587746868486" />
-    <state x="451" y="279" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587811346092">
+    <state x="348" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1587899048036">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="451" y="279" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1587811346092" />
+    <state x="348" y="187" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1587899048036" />
+    <state x="451" y="279" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587898456996">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="451" y="279" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.720@0.0.1280.720" timestamp="1587898456996" />
     <state x="424" y="77" key="git4idea.branch.GitSmartOperationDialog" timestamp="1587724018131">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

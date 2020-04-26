@@ -4,28 +4,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import BCryptSHA256PasswordHasher
 
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('username', 'password', 'first_name', 'email', 'is_staff')
-
-
-class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
-    encoder = BCryptSHA256PasswordHasher()
-
-    class Meta:
-        model = User
-        fields = ('username', 'password', 'email', 'first_name')
-
-    def create(self, validated_data):
-        password = validated_data.pop('password')
-        hashed_password = self.encoder.encode(password, salt=self.encoder.salt())
-        user = User.objects.create(password=hashed_password, **validated_data)
-        user.save()
-        return user
-
-
 class MenuSerializer(serializers.Serializer):
 
     id = serializers.IntegerField(read_only=True)
@@ -42,6 +20,11 @@ class MenuSerializer(serializers.Serializer):
         menu = Menu.objects.create(name=validated_data('name'), image_url_menu=validated_data('image_url_menu'))
         return menu
 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'password', 'first_name', 'email', 'is_staff')
 
 class DishSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
@@ -67,6 +50,21 @@ class DishSerializer(serializers.Serializer):
     imageUrl = serializers.CharField(max_length=255)
     count = serializers.IntegerField(default=1)
     menu = MenuSerializer(read_only=True)
+
+class RegisterSerializer(serializers.ModelSerializer):
+        password = serializers.CharField(write_only=True)
+        encoder = BCryptSHA256PasswordHasher()
+
+        class Meta:
+            model = User
+            fields = ('username', 'password', 'email', 'first_name')
+
+        def create(self, validated_data):
+            password = validated_data.pop('password')
+            hashed_password = self.encoder.encode(password, salt=self.encoder.salt())
+            user = User.objects.create(password=hashed_password, **validated_data)
+            user.save()
+            return user
 
 
 class OrderSerializer(serializers.ModelSerializer):

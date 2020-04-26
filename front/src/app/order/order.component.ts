@@ -21,7 +21,10 @@ import {ProviderService} from '../provider.service';
       this.getOrders();
     }
   }
-
+finishOrder(){
+  alert('Thanks for your order! Expect delivery!');
+  this.deleteOrders();
+}
   getOrders() {
     this.providerService.getOrders().subscribe(res => {
       this.orders = res;

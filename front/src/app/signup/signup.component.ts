@@ -32,10 +32,10 @@ export class SignupComponent implements OnInit {
   }
   signup() {
     if (!this.login || !this.password || !this.confirm) {
-      alert('Please, write your login and password!');
+      alert('Please, fill all lines!');
       this.clear();
     } else if (this.password !== this.confirm) {
-      alert('Passwords do not match. Try again, please!');
+      alert('Passwords do not match. Check it, please!');
     }
     this.provider.postUser(this.login, this.password, this.name, this.email).subscribe(res => {
         this.user.push(res);
