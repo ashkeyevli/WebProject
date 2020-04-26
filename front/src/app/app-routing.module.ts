@@ -6,7 +6,6 @@ import {DishItemComponent} from './dish-item/dish-item.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {OrderComponent} from './order/order.component';
-import {OrderingComponent} from './ordering/ordering.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent},
@@ -14,8 +13,7 @@ const routes: Routes = [
   { path: 'dishes/:dishId', component: DishItemComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
-  { path: 'order', component: OrderComponent},
-  { path: 'ordering', component: OrderingComponent}
+  { path: 'order', component: OrderComponent}
 ];
 
 @NgModule({

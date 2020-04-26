@@ -12,12 +12,9 @@ import {HeaderComponent} from './header/header.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {AuthInterceptor} from './AuthInterceptor';
-import { OrderComponent } from './order/order.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { OrderingComponent } from './ordering/ordering.component';
+import {OrderComponent} from './order/order.component';
+import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {ProviderService} from "./provider.service";
-
-
 
 
 @NgModule({
@@ -31,8 +28,7 @@ import {ProviderService} from "./provider.service";
     LoginComponent,
     SignupComponent,
     OrderComponent,
-    NavBarComponent,
-    OrderingComponent
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
