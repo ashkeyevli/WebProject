@@ -30,6 +30,7 @@ class OrderAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 
 
+
 class MenuDishesAPIView(APIView):
     def get_object(self, id):
         try:
@@ -64,7 +65,6 @@ def orders_list(request):
     if request.method == 'GET':
         orders = Order.objects.all()
         serializer = OrderSerializer(orders, many=True)
-
         return Response(serializer.data)
 
     elif request.method == 'POST':
