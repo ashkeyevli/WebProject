@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   auth() {
     if (!this.login || !this.password) {
-      alert('Please, provide full information');
+      alert('Please, fill all linws');
       this.clear();
     } else if (this.login && this.password) {
       this.provider.login(this.login, this.password).subscribe(res => {
