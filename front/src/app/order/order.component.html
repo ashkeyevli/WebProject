@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="shopping-cart" >
+<div class="shopping-cart" *ngIf="logged">
   <div class="title">
     Shopping cart
   </div>
@@ -26,7 +26,7 @@
   </div>
 
 </div>
-  <button class="btn-order" routerLink="/ordering">Make Order</button>
+  <button class="btn-order" routerLink="/menu">Make Order</button>
 
   <button class="btn-order"  (click)="deleteOrders()">Clear</button>
 
@@ -34,7 +34,9 @@
 </div>
 
 
-
+<div *ngIf="!logged" class="title" style="margin-left: 5em">
+  In order to be able to access the cart, please log into the system and try again!
+</div>
 
 
 
